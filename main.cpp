@@ -2,43 +2,72 @@
 #include <cstdlib>
 #include <ctime>
 
-const int scoreAt0 = 72; // change this number
+ const int scoreAt0 = 47;
 
-// Project 2 — Your Name
+// Project 2 — Betsy Caudel
 // CIS 5 Week 08
-// Do not edit the boilerplate. It randomly generates 30 elements into the array.
-// One main only. No vector. No extra functions. No files.
+using std::cout;
+using std::endl;
 
 int main() {
   const int N = 30;
   int scores[N];
-  const int scoreAt10 = 81; // change this number
+  const int scoreAt10 = 90;
 
-  // Do not edit this boilerplate. It randomly generates 30 elements into the array.
+  // Generates random numbers.
   srand(static_cast<unsigned>(time(nullptr)));
 
-  const int scoreAt20 = 64; // change this number
+  const int scoreAt20 = 75;
 
   for (int i = 0; i < N; ++i) {
     scores[i] = rand() % 100;
   }
 
   scores[0] = scoreAt0;
-  const int scoreAt27 = 41; // change this number
+  const int scoreAt27 = 84;
   scores[10] = scoreAt10;
   scores[20] = scoreAt20;
   scores[27] = scoreAt27;
 
-  // TODO: print each index and scores[i]
+  // Prints index and score
+  for (int i = 0; i < N; ++i) {
+    cout << "[" << i << "] " << scores[i] << endl;
+  }
 
-  // TODO: one for loop. Count A, B, C, D, and failing.
-  // 90 and up is A. 80 to 89 is B. 70 to 79 is C. 60 to 69 is D.
-  // Below 60 is failing. A score of 60 is a D.
-  // Print A:, B:, C:, D:, and F:. The five totals add up to 30.
+  // Variables to count how many scores in each letter.
+  int a_scores = 0;
+  int b_scores = 0;
+  int c_scores = 0;
+  int d_scores = 0;
+  int f_scores = 0;
 
-  // TODO: one while loop. If scores[i] is under 60, print:
-  // Student at index i needs to come to office hours.
-  // Put ++i in the loop or it never ends.
+  // Checks scores and assigns them to letter grade.
+  for (int i = 0; i < N; ++i) {
+    if (scores[i] >= 90) {
+      a_scores += 1;
+    } else if (scores[i] >= 80) {
+      b_scores += 1;
+    } else if (scores[i] >= 70) {
+      c_scores += 1;
+    } else if (scores[i] >= 60) {
+      d_scores += 1;
+    } else {
+      f_scores += 1;
+    } 
+  }
+
+  // Prints amount of scores in each letter.
+  cout << "A: " << a_scores << ", B: " << b_scores << ", C: " << c_scores << ", D: ";
+  cout << d_scores << ", F: " << f_scores << endl;
+
+  // Checks which students need to go to office hours.
+  int i = 0;
+  while (i < N) {
+    if (scores[i] < 60) {
+      cout << "Student at index " << i << " needs to come to office hours." << endl;
+    }
+    ++i;
+  }
 
   return 0;
 }
